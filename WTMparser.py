@@ -1,0 +1,11 @@
+import requests
+from bs4 import BeautifulSoup
+page = requests.get("https://whattomine.com/coins?utf8=%E2%9C%93&adapt_q_380=0&adapt_q_fury=0&adapt_q_470=1&adapt_q_480=3&adapt_q_570=1&adapt_q_580=1&adapt_q_vega56=1&adapt_q_vega64=0&adapt_q_vii=1&adapt_q_1050Ti=0&adapt_q_10606=1&adapt_q_1070=0&adapt_q_1070Ti=0&adapt_q_1080=0&adapt_q_1080Ti=0&adapt_q_1660=0&adapt_q_1660Ti=0&adapt_q_2060=0&adapt_q_2070=0&adapt_q_2080=0&adapt_q_2080Ti=0&eth=true&factor%5Beth_hr%5D=1000.0&factor%5Beth_p%5D=0.0&factor%5Bzh_hr%5D=0.0&factor%5Bzh_p%5D=0.0&factor%5Bcnh_hr%5D=0.0&factor%5Bcnh_p%5D=0.0&factor%5Bcn8_hr%5D=0.0&factor%5Bcn8_p%5D=0.0&factor%5Bcnr_hr%5D=0.0&factor%5Bcnr_p%5D=0.0&factor%5Bcnf_hr%5D=0.0&factor%5Bcnf_p%5D=0.0&factor%5Beqa_hr%5D=0.0&factor%5Beqa_p%5D=0.0&factor%5Bcc_hr%5D=0.0&factor%5Bcc_p%5D=0.0&factor%5Bcr29_hr%5D=0.0&factor%5Bcr29_p%5D=0.0&factor%5Bct31_hr%5D=0.0&factor%5Bct31_p%5D=0.0&factor%5Beqb_hr%5D=0.0&factor%5Beqb_p%5D=0.0&factor%5Bns_hr%5D=0.0&factor%5Bns_p%5D=0.0&factor%5Bbcd_hr%5D=0.0&factor%5Bbcd_p%5D=0.0&factor%5Btt10_hr%5D=0.0&factor%5Btt10_p%5D=0.0&factor%5Bx16r_hr%5D=0.0&factor%5Bx16r_p%5D=0.0&factor%5Bphi2_hr%5D=0.0&factor%5Bphi2_p%5D=0.0&factor%5Bxn_hr%5D=0.0&factor%5Bxn_p%5D=0.0&factor%5Bhx_hr%5D=0.0&factor%5Bhx_p%5D=0.0&factor%5Bphi_hr%5D=0.0&factor%5Bphi_p%5D=0.0&factor%5Bppw_hr%5D=0.0&factor%5Bppw_p%5D=0.0&factor%5Bx25x_hr%5D=0.0&factor%5Bx25x_p%5D=0.0&factor%5Bmtp_hr%5D=0.0&factor%5Bmtp_p%5D=0.0&factor%5Blrev3_hr%5D=0.0&factor%5Blrev3_p%5D=0.0&factor%5Bcost%5D=0.0&sort=Profitability24&volume=0&revenue=24h&factor%5Bexchanges%5D%5B%5D=&factor%5Bexchanges%5D%5B%5D=binance&factor%5Bexchanges%5D%5B%5D=bitfinex&factor%5Bexchanges%5D%5B%5D=bittrex&factor%5Bexchanges%5D%5B%5D=cryptobridge&factor%5Bexchanges%5D%5B%5D=exmo&factor%5Bexchanges%5D%5B%5D=gate&factor%5Bexchanges%5D%5B%5D=hitbtc&factor%5Bexchanges%5D%5B%5D=ogre&factor%5Bexchanges%5D%5B%5D=poloniex&dataset=Main&commit=Calculate")
+soup = BeautifulSoup(page.content,'html.parser')
+fulltable = soup.find("table", { "class" : "table table-sm table-hover table-vcenter" })
+rows = fulltable.findAll("tr")
+tableMatrix=[]
+for i in range(len(rows)):
+    tableMatrix.append(rows[i].findAll("td"))
+tableMatrix.remove([])
+print(tableMatrix)

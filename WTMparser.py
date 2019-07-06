@@ -13,7 +13,7 @@ tableMatrix.remove([])
 #remove the unnecessary entries that come with the td tag
 j=0
 while j<len(tableMatrix):
-    if (tableMatrix[j][0].text.find('(') == -1):
+    if ((tableMatrix[j][0].text.find('(') == -1) and (tableMatrix[j][0].text.find('-') == -1)):
         tableMatrix.remove(tableMatrix[j])
     else:
         j=j+1
@@ -22,7 +22,7 @@ while j<len(tableMatrix):
 for i in range (len(tableMatrix)):
     first = tableMatrix[i][7].text.find('$')+1
     last = tableMatrix[i][7].text.find('$', first+1)
-    String = tableMatrix[i][7].text[first:last]
+    String = tableMatrix[i][7].text[first:last].strip().replace('\n','').replace('-','').replace(',','')
     Price = float(String)
     Name = tableMatrix[i][0].text.strip()
     NamePriceMatrix.append([Name, Price])
